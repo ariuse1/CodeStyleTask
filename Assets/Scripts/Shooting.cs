@@ -8,8 +8,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private float _timeWait;
-
-    public Transform ObjectToShoot;    
+    [SerializeField] private Transform ObjectToShoot;
 
     private void Start()
     {

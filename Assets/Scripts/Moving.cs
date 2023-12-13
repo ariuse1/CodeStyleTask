@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public class Moving : MonoBehaviour
-{    
-    public Transform AllPoints;
-    public float Speed;
+{
+    [SerializeField] private Transform AllPoints;
+    [SerializeField] private float Speed;
 
     private Transform[] _points;
     private int _numberPoint;
-    
+
     private void Awake()
     {
         _points = new Transform[AllPoints.childCount];
@@ -15,7 +15,7 @@ public class Moving : MonoBehaviour
         for (int i = 0; i < AllPoints.childCount; i++)
             _points[i] = AllPoints.GetChild(i).GetComponent<Transform>();
     }
-   
+
     private void Update()
     {
         Transform point = _points[_numberPoint];
