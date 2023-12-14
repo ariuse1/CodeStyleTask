@@ -3,19 +3,19 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class Shooting : MonoBehaviour
+public class Shooter : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private GameObject _bullet;
+    [SerializeField] private Rigidbody _bullet;
     [SerializeField] private float _timeWait;
     [SerializeField] private Transform _objectToShoot;
 
     private void Start()
     {
-        StartCoroutine(ShootingWorker());
+        StartCoroutine(Shoot());
     }
 
-    private IEnumerator ShootingWorker()
+    private IEnumerator Shoot()
     {
         bool isWork = true;
         WaitForSeconds timeWait = new WaitForSeconds(_timeWait);
@@ -23,10 +23,10 @@ public class Shooting : MonoBehaviour
         while (isWork)
         {
             Vector3 direction = (_objectToShoot.position - transform.position).normalized;
-            GameObject NewBullet = Instantiate(_bullet, transform.position + direction, Quaternion.identity);
+            Rigidbody newBullet = Instantiate(_bullet, transform.position + direction, Quaternion.identity);
 
-            NewBullet.GetComponent<Rigidbody>().transform.up = direction;
-            NewBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
+            newBullet.transform.up = direction;
+            newBullet.velocity = direction * _speed;
 
             yield return timeWait;
         }

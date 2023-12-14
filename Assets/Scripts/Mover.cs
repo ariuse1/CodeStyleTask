@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Moving : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     [SerializeField] private Transform _allPoints;
     [SerializeField] private float _speed;
@@ -22,7 +22,8 @@ public class Moving : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, point.position, _speed * Time.deltaTime);
 
-        if (transform.position == point.position) SelectNextPoint();
+        if (transform.position == point.position) 
+            SelectNextPoint();
     }
 
     private void SelectNextPoint()
@@ -32,8 +33,8 @@ public class Moving : MonoBehaviour
         if (_numberPoint == _points.Length)
             _numberPoint = 0;
 
-        Vector3 PointVector = _points[_numberPoint].transform.position;
+        Vector3 pointVector = _points[_numberPoint].transform.position;
 
-        transform.forward = PointVector - transform.position;
+        transform.forward = pointVector - transform.position;
     }
 }
