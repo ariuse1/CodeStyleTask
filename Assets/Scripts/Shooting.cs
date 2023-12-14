@@ -8,7 +8,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private float _timeWait;
-    [SerializeField] private Transform ObjectToShoot;
+    [SerializeField] private Transform _objectToShoot;
 
     private void Start()
     {
@@ -22,7 +22,7 @@ public class Shooting : MonoBehaviour
 
         while (isWork)
         {
-            Vector3 direction = (ObjectToShoot.position - transform.position).normalized;
+            Vector3 direction = (_objectToShoot.position - transform.position).normalized;
             GameObject NewBullet = Instantiate(_bullet, transform.position + direction, Quaternion.identity);
 
             NewBullet.GetComponent<Rigidbody>().transform.up = direction;
